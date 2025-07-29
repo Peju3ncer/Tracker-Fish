@@ -42,7 +42,7 @@ ___
 ## Kemudian Jalankan Server :
 python tracker.py
 
-⚠️ Legal & Etika
+##⚠️ Legal & Etika
 
 ### Proyek ini hanya untuk:
 
