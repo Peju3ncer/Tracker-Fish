@@ -42,8 +42,9 @@ pip install pyngrok
 ```bash
 python tracker.py
 ```
-# ATTENTION!!!
-⚠️ Legal & Etika
+## ATTENTION!!!
+-
+# ⚠️ Legal & Etika
 ---
 ##### Proyek ini hanya untuk:
 
