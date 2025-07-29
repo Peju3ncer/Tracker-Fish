@@ -6,7 +6,7 @@
 
 ---
 
-## 🧠 Cara Kerja
+# 🧠 Cara Kerja
 
 1. Server lokal dibuat menggunakan Python `http.server` dan ditampilkan ke publik menggunakan [Ngrok](https://ngrok.com/).
 2. Target akan diarahkan ke halaman umpan (mirip tampilan transfer PayPal sukses).
@@ -18,7 +18,7 @@
 
 ---
 
-## 📁 Struktur Proyek
+# 📁 Struktur Proyek
 Tracker-Fish/
 ├── README.md
 ├── tracker.py
@@ -28,7 +28,7 @@ Tracker-Fish/
     └── script.js
     ---
 
-## ▶️ Cara Menjalankan
+# ▶️ Cara Menjalankan
 
 ### 1. Pastikan Python & Ngrok sudah terinstal
 - Install Python: [https://python.org](https://python.org)
@@ -42,7 +42,7 @@ pip install pyngrok
 ```bash
 python tracker.py
 ```
-___
+# ATTENTION!!!
 ⚠️ Legal & Etika
 ---
 ##### Proyek ini hanya untuk:
