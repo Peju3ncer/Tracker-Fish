@@ -45,13 +45,13 @@ python tracker.py
 ___
 ⚠️ Legal & Etika
 ---
-# Proyek ini hanya untuk:
+##### Proyek ini hanya untuk:
 
 • Simulasi keamanan
 • Penelitian edukasi
 • Demonstrasi keamanan perangkat
 
-# Dilarang menggunakan Tracker-Fish untuk:
+##### Dilarang menggunakan Tracker-Fish untuk:
 
 • Memata-matai orang tanpa izin
 • Menjebak pengguna secara ilegal
