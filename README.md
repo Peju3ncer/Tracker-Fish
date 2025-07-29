@@ -37,6 +37,7 @@ Tracker-Fish/
 ### 2. Install `pyngrok`
 ```bash
 pip install pyngrok
+```
 ___
 ## Kemudian Jalankan Server :
 python tracker.py
