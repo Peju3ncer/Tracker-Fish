@@ -38,10 +38,11 @@ Tracker-Fish/
 ```bash
 pip install pyngrok
 ```
-___
-## Kemudian Jalankan Server :
+### 3. Jalankan Server :
+```bash
 python tracker.py
-
+```
+___
 ⚠️ Legal & Etika
 ---
 ### Proyek ini hanya untuk:
