@@ -41,7 +41,7 @@ pip install pyngrok
 ___
 ## Kemudian Jalankan Server :
 python tracker.py
-
+---
 ##⚠️ Legal & Etika
 
 ### Proyek ini hanya untuk:
