@@ -58,10 +58,10 @@ python tracker.py
 
 
 ### Jika digunakan secara tidak sah, pencipta proyek tidak bertanggung jawab atas akibatnya.
-
+```bash
 ---
 👨‍💻 Dibuat oleh
 
 🗥️ Peju 3ncer
-🧠 Untuk edukasi dan pertahanan digital ✊
+Untuk edukasi dan pertahanan digital
 ---
