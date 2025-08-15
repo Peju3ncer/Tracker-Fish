@@ -1,4 +1,4 @@
-# 🐟 Tracker-Fish
+# Tracker-Fish (Not yet fully functional, still under construction)
 
 **Tracker-Fish** adalah proyek pelacakan perangkat berbasis umpan (honeypot phishing) yang digunakan untuk mendeteksi informasi dasar dari perangkat target melalui halaman umpan (bait page). Alat ini dibuat untuk keperluan edukasi keamanan siber dan simulasi penetration testing, **bukan untuk disalahgunakan**.
 
