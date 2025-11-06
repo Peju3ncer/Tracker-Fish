@@ -39,7 +39,7 @@ def clear_screen():
 def print_banner():
     print("=" * 40)
     print("     TRACKER FISH                  ")
-    print("  By: Peju 3ncer                   ")
+    print("    By: Peju 3ncer                 ")
     print("=" * 40)
 
 def setup_logging(log_path):
@@ -185,37 +185,18 @@ def handle_exit(sig, frame):
     sys.exit(0)
 
 # =========================
-# MAIN FUNCTION
+# TOP SECRET
 # =========================
-def main():
-    signal.signal(signal.SIGINT, handle_exit)
-    signal.signal(signal.SIGTERM, handle_exit)
+import base64
 
-    clear_screen()
-    print_banner()
+SECRET_BLOB = b"IyA9PT09PT09PT09PT09PT09PT09PT09PT09CiMgTUFJTiBGVU5DVElPTgojID09PT09PT09PT09PT09PT09PT09PT09PT0KZGVmIG1haW4oKToKICAgIHNpZ25hbC5zaWduYWwoc2lnbmFsLlNJR0lOVCwgaGFuZGxlX2V4aXQpCiAgICBzaWduYWwuc2lnbmFsKHNpZ25hbC5TSUdURVJNLCBoYW5kbGVfZXhpdCkKCiAgICBjbGVhcl9zY3JlZW4oKQogICAgcHJpbnRfYmFubmVyKCkKCiAgICAjIGNlayBmb2xkZXIgc2VydmVyICYgcGluZGFoCiAgICBmdWxsX3BhdGggPSBjZWtfZm9sZGVyX3NlcnZlcigpCgogICAgIyBzaWFwa2FuIGxvZ2dpbmcgKGZpbGUgYWRhIGRpIGZvbGRlciBzZXJ2ZXIpCiAgICBsb2dfcGF0aCA9IG9zLnBhdGguam9pbihmdWxsX3BhdGgsIExPR19GSUxFTkFNRSkKICAgIGxvZ2dlciA9IHNldHVwX2xvZ2dpbmcobG9nX3BhdGgpCgogICAgdGFtcGlsa2FuX2luZm9fc2lzdGVtKGxvZ2dlcikKCiAgICB0cnk6CiAgICAgICAgdXNlcl9pbnB1dCA9IGlucHV0KCJcbk1hc3Vra2FuIHBhc3N3b3JkIHVudHVrIG11bGFpOiAiKS5zdHJpcCgpLmxvd2VyKCkKICAgICAgICBpZiB1c2VyX2lucHV0ICE9ICJwZWp1M25jZXJnYW50ZW5nIjoKICAgICAgICAgICAgbG9nZ2VyLmluZm8oIlshXSBUaWRhayBkaWtlbmFsaSwgYWtzZXMgZGl0b2xhay4gUHJvZ3JhbSBkaWJhdGFsa2FuLiIpCiAgICAgICAgICAgIHN5cy5leGl0KDApCiAgICBleGNlcHQgS2V5Ym9hcmRJbnRlcnJ1cHQ6CiAgICAgICAgaGFuZGxlX2V4aXQoTm9uZSwgTm9uZSkKCiAgICBsb2dnZXIuaW5mbygiW/CflJBdIE1vZGU6IExPQ0FMSE9TVCAodGlkYWsgbWVtYnVhdCB0dW5uZWwgZXh0ZXJuYWwpIikKICAgIGxvZ2dlci5pbmZvKGYiW/Cfk4FdIExvZyBmaWxlOiB7bG9nX3BhdGh9IikKICAgIGxvZ2dlci5pbmZvKCJb8J+Ujl0gTWVtdWxhaSBzZXJ2ZXIgZGFuIGxvZ2dpbmcgYWt0aXZpdGFzLi4uIikKCiAgICBtdWxhaV9zZXJ2ZXIobG9nZ2VyKQo="
 
-    # cek folder server & pindah
-    full_path = cek_folder_server()
+decoded_src = base64.b64decode(SECRET_BLOB).decode("utf-8")
 
-    # siapkan logging (file ada di folder server)
-    log_path = os.path.join(full_path, LOG_FILENAME)
-    logger = setup_logging(log_path)
+# kasih blob akses ke SEMUA import & fungsi file utama
+secret_namespace = globals().copy()
 
-    tampilkan_info_sistem(logger)
-
-    try:
-        user_input = input("\nMasukkan password untuk mulai: ").strip().lower()
-        if user_input != "masuk":
-            logger.info("[!] Tidak dikenali, akses ditolak. Program dibatalkan.")
-            sys.exit(0)
-    except KeyboardInterrupt:
-        handle_exit(None, None)
-
-    logger.info("[🔐] Mode: LOCALHOST (tidak membuat tunnel external)")
-    logger.info(f"[📁] Log file: {log_path}")
-    logger.info("[🔎] Memulai server dan logging aktivitas...")
-
-    mulai_server(logger)
+exec(compile(decoded_src, "<secret_blob>", "exec"), secret_namespace)
 
 if __name__ == "__main__":
-    main()
+    secret_namespace["main"]()
