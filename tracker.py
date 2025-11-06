@@ -1,17 +1,18 @@
-# tracker.py
-
+#!/usr/bin/env python3
+# tracker.py - Localhost mode + logging
 import http.server
 import socketserver
 import os
 import time
-from pyngrok import ngrok
 import signal
 import sys
 import platform
+from datetime import datetime
 from urllib.parse import urlparse
 from shutil import which
-from datetime import datetime
-import socket  # <-- Tambahan untuk cek DNS
+import logging
+from logging.handlers import RotatingFileHandler
+import threading
 
 # =========================
 # KONFIGURASI
@@ -19,9 +20,15 @@ import socket  # <-- Tambahan untuk cek DNS
 PORT = 8080
 FOLDER_NAME = "server"
 CLEAR_COMMAND = "clear" if os.name == "posix" else "cls"
+LOG_FILENAME = "tracker.log"
+MAX_LOG_BYTES = 5 * 1024 * 1024  # 5 MB
+BACKUP_COUNT = 3
+
+# Global server handle supaya bisa shutdown dari signal handler
+httpd = None
 
 # =========================
-# UTILITAS TERMINAL
+# UTILITAS TERMINAL & LOG
 # =========================
 def clear_screen():
     try:
@@ -30,118 +37,151 @@ def clear_screen():
         pass
 
 def print_banner():
-    print("=" * 25)
-    print("     TRACKER FISH       ")
-    print("  By: Peju 3ncer 🗥️     ")
-    print("=" * 25)
+    print("=" * 40)
+    print("     TRACKER FISH                  ")
+    print("  By: Peju 3ncer                   ")
+    print("=" * 40)
+
+def setup_logging(log_path):
+    logger = logging.getLogger("tracker")
+    logger.setLevel(logging.INFO)
+
+    # Console handler
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.INFO)
+    ch_formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s", "%Y-%m-%d %H:%M:%S")
+    ch.setFormatter(ch_formatter)
+
+    # Rotating file handler
+    fh = RotatingFileHandler(log_path, maxBytes=MAX_LOG_BYTES, backupCount=BACKUP_COUNT, encoding="utf-8")
+    fh.setLevel(logging.INFO)
+    fh.setFormatter(ch_formatter)
+
+    # Avoid duplicate handlers on re-run
+    if not logger.handlers:
+        logger.addHandler(ch)
+        logger.addHandler(fh)
+
+    return logger
 
 # =========================
-# CEK LINGKUNGAN TERMUX
+# CEK & MASUK KE FOLDER SERVER
 # =========================
 def cek_folder_server():
     try:
         full_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), FOLDER_NAME)
         if not os.path.exists(full_path):
-            print(f"[X] Folder '{FOLDER_NAME}' tidak ditemukan di path: {full_path}")
-            sys.exit(1)
+            raise FileNotFoundError(f"Folder '{FOLDER_NAME}' tidak ditemukan: {full_path}")
         os.chdir(full_path)
+        return full_path
     except Exception as e:
         print(f"[X] Gagal mengakses folder server: {e}")
         sys.exit(1)
 
-def cek_ngrok_terinstal():
-    if which("ngrok") is None:
-        print("[X] Ngrok belum terinstal di Termux!")
-        print("Silakan jalankan perintah berikut:")
-        print("""
-pkg install wget unzip -y
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
-unzip ngrok-stable-linux-arm.zip
-mv ngrok /data/data/com.termux/files/usr/bin
-chmod +x /data/data/com.termux/files/usr/bin/ngrok
-""")
-        sys.exit(1)
-
-def tampilkan_info_sistem():
-    print(f"📱 Platform   : {platform.system()} {platform.machine()}")
-    print(f"🕒 Sekarang   : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"📂 Direktori  : {os.getcwd()}")
-    print(f"🔌 Port       : {PORT}")
+def tampilkan_info_sistem(logger):
+    logger.info(f"Platform   : {platform.system()} {platform.machine()}")
+    logger.info(f"Sekarang   : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    logger.info(f"Direktori  : {os.getcwd()}")
+    logger.info(f"Port       : {PORT}")
 
 # =========================
-# CEK DNS NGROK (UNTUK TERMUX)
+# HANDLER KUSTOM UNTUK REQUESTS
 # =========================
-def cek_dns_ngrok():
-    try:
-        socket.gethostbyname("connect.us.ngrok-agent.com")
-        return True
-    except:
-        return False
+class LoggingHandler(http.server.SimpleHTTPRequestHandler):
+    server_version = "TrackerFishHTTP/1.0"
 
-# =========================
-# NGROK SETUP
-# =========================
-def buat_ngrok_tunnel(port):
-    try:
-        tunnel = ngrok.connect(port, "http")
-        if not tunnel:
-            raise Exception("Tunnel kosong.")
-        return tunnel.public_url
-    except Exception as e:
-        print(f"[X] Gagal membuat tunnel ngrok: {e}")
-        sys.exit(1)
+    def _log_request_full(self, note=""):
+        # Common details to log about a request
+        client = f"{self.client_address[0]}:{self.client_address[1]}"
+        method = self.command
+        path = self.path
+        parsed = urlparse(path)
+        return f"{client} | {method} | {parsed.path} | query={parsed.query} {note}"
 
-# =========================
-# HANDLER KUSTOM UNTUK POST
-# =========================
-class CustomHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        logger = logging.getLogger("tracker")
+        logger.info(self._log_request_full())
+        # Serve files as usual from current directory
+        try:
+            super().do_GET()
+        except Exception as e:
+            logger.error(f"Error saat men-serv file: {e}")
+            self.send_error(500, "Internal Server Error")
+
     def do_POST(self):
-        if self.path == '/data':
+        logger = logging.getLogger("tracker")
+        note = ""
+        try:
+            length = int(self.headers.get('Content-Length', 0))
+            content_type = self.headers.get('Content-Type', '')
+            data = self.rfile.read(length) if length > 0 else b""
             try:
-                length = int(self.headers.get('Content-Length', 0))
-                data = self.rfile.read(length)
                 decoded = data.decode('utf-8', errors='replace')
-                print("\n[📡 Data Diterima!]")
-                print(decoded)
-                self.send_response(200)
-                self.end_headers()
-            except Exception as e:
-                print(f"[X] Gagal menangani POST: {e}")
+            except Exception:
+                decoded = repr(data)
+            note = f"| content-type={content_type} | payload_len={len(data)}"
+            logger.info(self._log_request_full(note))
+            logger.info("---- BEGIN POST PAYLOAD ----")
+            logger.info(decoded)
+            logger.info("----  END POST PAYLOAD  ----")
+            # respond OK
+            self.send_response(200)
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(b"OK")
+        except Exception as e:
+            logger.error(f"[X] Gagal menangani POST: {e}")
+            try:
                 self.send_response(500)
                 self.end_headers()
-        else:
-            self.send_response(404)
-            self.end_headers()
+            except:
+                pass
 
     def log_message(self, format, *args):
-        return  # Matikan log HTTP default biar bersih
+        # Matikan default stdout dari SimpleHTTPRequestHandler (kita handle sendiri)
+        return
 
 # =========================
-# SERVER STARTER
+# SERVER STARTER (Threaded)
 # =========================
-def mulai_server():
+class ThreadingHTTPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    allow_reuse_address = True
+
+def mulai_server(logger):
+    global httpd
     try:
-        with socketserver.TCPServer(("", PORT), CustomHandler) as httpd:
-            print(f"[√] Server aktif di: http://localhost:{PORT}")
-            print("[⌛] Menunggu target mengakses...\n")
-            httpd.serve_forever()
-    except OSError:
-        print(f"[X] Port {PORT} sedang digunakan. Ubah port atau tutup aplikasi lain.")
+        with ThreadingHTTPServer(("127.0.0.1", PORT), LoggingHandler) as httpd_local:
+            httpd = httpd_local
+            addr = httpd.server_address
+            logger.info(f"[√] Server aktif di: http://{addr[0]}:{addr[1]}")
+            logger.info("[⌛] Menunggu koneksi... (akses hanya dari localhost)\n")
+            try:
+                httpd.serve_forever()
+            except Exception as e:
+                logger.error(f"[X] Error saat serve_forever: {e}")
+    except OSError as e:
+        logger.error(f"[X] Port {PORT} sedang digunakan atau akses ditolak: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"[X] Error saat menjalankan server: {e}")
+        logger.error(f"[X] Error saat menjalankan server: {e}")
         sys.exit(1)
 
 # =========================
-# EXIT HANDLER (Ctrl+C)
+# EXIT HANDLER (Ctrl+C / SIGTERM)
 # =========================
 def handle_exit(sig, frame):
-    print("\n[!] Dihentikan oleh user.")
+    logger = logging.getLogger("tracker")
+    logger.info("\n[!] Dihentikan oleh user (signal received).")
+    global httpd
     try:
-        ngrok.kill()
-    except:
-        pass
-    print("[✓] Semua koneksi dihentikan. Keluar dengan aman.")
+        if httpd:
+            logger.info("[⌛] Menghentikan server...")
+            threading.Thread(target=httpd.shutdown).start()
+            # beri waktu sebentar agar shutdown terjadi
+            time.sleep(0.5)
+    except Exception as e:
+        logger.error(f"[X] Gagal shutdown server secara rapi: {e}")
+    logger.info("[✓] Semua koneksi dihentikan. Keluar dengan aman.")
     sys.exit(0)
 
 # =========================
@@ -153,37 +193,29 @@ def main():
 
     clear_screen()
     print_banner()
-    tampilkan_info_sistem()
 
-    cek_folder_server()
-    cek_ngrok_terinstal()
+    # cek folder server & pindah
+    full_path = cek_folder_server()
+
+    # siapkan logging (file ada di folder server)
+    log_path = os.path.join(full_path, LOG_FILENAME)
+    logger = setup_logging(log_path)
+
+    tampilkan_info_sistem(logger)
 
     try:
-        user_input = input("\nKetik 'MASUK' untuk mulai: ").strip().lower()
+        user_input = input("\nMasukkan password untuk mulai: ").strip().lower()
         if user_input != "masuk":
-            print("[!] Perintah tidak dikenali. Program dibatalkan.")
+            logger.info("[!] Tidak dikenali, akses ditolak. Program dibatalkan.")
             sys.exit(0)
     except KeyboardInterrupt:
         handle_exit(None, None)
 
-    # Cek DNS Ngrok sebelum bikin tunnel
-    if not cek_dns_ngrok():
-        print("[X] Tidak bisa resolve domain ngrok.")
-        print("💡 Jalankan ini di Termux:")
-        print("echo 'nameserver 8.8.8.8' > $PREFIX/etc/resolv.conf")
-        print("🔌 Atau pastikan koneksi internet lancar.")
-        sys.exit(1)
+    logger.info("[🔐] Mode: LOCALHOST (tidak membuat tunnel external)")
+    logger.info(f"[📁] Log file: {log_path}")
+    logger.info("[🔎] Memulai server dan logging aktivitas...")
 
-    print("\n[🔗] Membuat tunnel dengan ngrok...")
-    public_url = buat_ngrok_tunnel(PORT)
-    print("\n[🌍] Kirim link ini ke target:")
-    print(public_url)
-    print()
+    mulai_server(logger)
 
-    mulai_server()
-
-# =========================
-# ENTRY POINT
-# =========================
 if __name__ == "__main__":
     main()
