@@ -42,6 +42,69 @@ def print_banner():
     print("    By: Peju 3ncer                 ")
     print("=" * 40)
 
+
+# -------------------------
+# Tampilan warna & animasi
+# -------------------------
+try:
+    import colorama
+    colorama.init()
+    F_RESET = colorama.Style.RESET_ALL
+    F_RED = colorama.Fore.RED
+    F_GREEN = colorama.Fore.GREEN
+    F_YELLOW = colorama.Fore.YELLOW
+    F_CYAN = colorama.Fore.CYAN
+    F_BLUE = colorama.Fore.BLUE
+except Exception:
+    # Fallback ke ANSI (may work on modern Windows terminals)
+    F_RESET = "\033[0m"
+    F_RED = "\033[31m"
+    F_GREEN = "\033[32m"
+    F_YELLOW = "\033[33m"
+    F_CYAN = "\033[36m"
+    F_BLUE = "\033[34m"
+
+def colored(text, color_code):
+    try:
+        return f"{color_code}{text}{F_RESET}"
+    except Exception:
+        return text
+
+def print_ascii_tracker():
+    """Cetak ASCII art 'Tracker-Fish' dengan warna sederhana"""
+    art = '''
+░██████████                               ░██                                   ░██████████░██           ░██        
+    ░██                                   ░██                                   ░██                      ░██        
+    ░██    ░██░████  ░██████    ░███████  ░██    ░██ ░███████  ░██░████         ░██        ░██ ░███████  ░████████  
+    ░██    ░███           ░██  ░██    ░██ ░██   ░██ ░██    ░██ ░███     ░██████ ░█████████ ░██░██        ░██    ░██ 
+    ░██    ░██       ░███████  ░██        ░███████  ░█████████ ░██              ░██        ░██ ░███████  ░██    ░██ 
+    ░██    ░██      ░██   ░██  ░██    ░██ ░██   ░██ ░██        ░██              ░██        ░██       ░██ ░██    ░██ 
+    ░██    ░██       ░█████░██  ░███████  ░██    ░██ ░███████  ░██              ░██        ░██ ░███████  ░██    ░██ 
+
+    𝕍𝕖𝕣𝕤𝕚𝕠𝕟: 𝕍𝟙.𝟛
+    𝕄𝕒𝕕𝕖 𝔹𝕪: ℙ𝕖𝕛𝕦𝟛𝕟𝕔𝕖𝕣
+    
+'''.splitlines()
+    colors = [F_CYAN, F_BLUE, F_GREEN, F_YELLOW, F_RED, F_CYAN]
+    for i, line in enumerate(art):
+        print(colored(line, colors[i % len(colors)]))
+
+def animated_loading(message="Loading", duration=1.5, interval=0.25):
+    """Animasi loading sederhana dengan titik-titik"""
+    steps = int(max(1, duration / interval))
+    try:
+        for i in range(steps):
+            dots = (i % 4) * '.'
+            sys.stdout.write(f"\r{message}{dots} ")
+            sys.stdout.flush()
+            time.sleep(interval)
+        sys.stdout.write("\r" + " " * (len(message) + 5) + "\r")
+        sys.stdout.flush()
+    except Exception:
+        # Jika terminal tidak bisa manipulasi, fallback newline
+        print(message)
+
+
 def setup_logging(log_path):
     logger = logging.getLogger("tracker")
     logger.setLevel(logging.INFO)
@@ -184,19 +247,102 @@ def handle_exit(sig, frame):
     logger.info("[✓] Semua koneksi dihentikan. Keluar dengan aman.")
     sys.exit(0)
 
-# =========================
-# TOP SECRET
-# =========================
-import base64
+# =========================    
+# MAIN FUNCTION    
+# =========================    
+def main():    
+    signal.signal(signal.SIGINT, handle_exit)    
+    signal.signal(signal.SIGTERM, handle_exit)    
+    
+    clear_screen()    
+    print_banner()    
+    
+    # cek folder server & pindah    
+    full_path = cek_folder_server()    
+    
+    # siapkan logging (file ada di folder server)    
+    log_path = os.path.join(full_path, LOG_FILENAME)    
+    logger = setup_logging(log_path)    
+    
+    tampilkan_info_sistem(logger)    
+    
+    try:    
+        user_input = input("\nMasukkan password untuk mulai: ").strip().lower()    
+        if user_input != "peju3ncerganteng":    
+            logger.info("[!] Tidak dikenali, akses ditolak. Program dibatalkan.")    
+            sys.exit(0)    
+    except KeyboardInterrupt:    
+        handle_exit(None, None)    
 
-SECRET_BLOB = b"IyA9PT09PT09PT09PT09PT09PT09PT09PT09ICAgIAojIE1BSU4gRlVOQ1RJT04gICAgCiMgPT09PT09PT09PT09PT09PT09PT09PT09PSAgICAKZGVmIG1haW4oKTogICAgCiAgICBzaWduYWwuc2lnbmFsKHNpZ25hbC5TSUdJTlQsIGhhbmRsZV9leGl0KSAgICAKICAgIHNpZ25hbC5zaWduYWwoc2lnbmFsLlNJR1RFUk0sIGhhbmRsZV9leGl0KSAgICAKICAgIAogICAgY2xlYXJfc2NyZWVuKCkgICAgCiAgICBwcmludF9iYW5uZXIoKSAgICAKICAgIAogICAgIyBjZWsgZm9sZGVyIHNlcnZlciAmIHBpbmRhaCAgICAKICAgIGZ1bGxfcGF0aCA9IGNla19mb2xkZXJfc2VydmVyKCkgICAgCiAgICAKICAgICMgc2lhcGthbiBsb2dnaW5nIChmaWxlIGFkYSBkaSBmb2xkZXIgc2VydmVyKSAgICAKICAgIGxvZ19wYXRoID0gb3MucGF0aC5qb2luKGZ1bGxfcGF0aCwgTE9HX0ZJTEVOQU1FKSAgICAKICAgIGxvZ2dlciA9IHNldHVwX2xvZ2dpbmcobG9nX3BhdGgpICAgIAogICAgCiAgICB0YW1waWxrYW5faW5mb19zaXN0ZW0obG9nZ2VyKSAgICAKICAgIAogICAgdHJ5OiAgICAKICAgICAgICB1c2VyX2lucHV0ID0gaW5wdXQoIlxuTWFzdWtrYW4gcGFzc3dvcmQgdW50dWsgbXVsYWk6ICIpLnN0cmlwKCkubG93ZXIoKSAgICAKICAgICAgICBpZiB1c2VyX2lucHV0ICE9ICJwZWp1M25jZXJnYW50ZW5nIjogICAgCiAgICAgICAgICAgIGxvZ2dlci5pbmZvKCJbIV0gVGlkYWsgZGlrZW5hbGksIGFrc2VzIGRpdG9sYWsuIFByb2dyYW0gZGliYXRhbGthbi4iKSAgICAKICAgICAgICAgICAgc3lzLmV4aXQoMCkgICAgCiAgICBleGNlcHQgS2V5Ym9hcmRJbnRlcnJ1cHQ6ICAgIAogICAgICAgIGhhbmRsZV9leGl0KE5vbmUsIE5vbmUpICAgIAogICAgCiAgICBsb2dnZXIuaW5mbygiW/CflJBdIE1vZGU6IExPQ0FMSE9TVCAodGlkYWsgbWVtYnVhdCB0dW5uZWwgZXh0ZXJuYWwpIikgICAgCiAgICBsb2dnZXIuaW5mbyhmIlvwn5OBXSBMb2cgZmlsZToge2xvZ19wYXRofSIpICAgIAogICAgbG9nZ2VyLmluZm8oIlvwn5SOXSBNZW11bGFpIHNlcnZlciBkYW4gbG9nZ2luZyBha3Rpdml0YXMuLi4iKSAgICAKICAgIAogICAgbXVsYWlfc2VydmVyKGxvZ2dlcikK"
+    # Tampilkan ASCII art setelah login, lalu beri efek loading sebelum pilihan
+    try:
+        clear_screen()
+        print_ascii_tracker()
+        animated_loading("Memuat pilihan...", duration=3.5)
+        print("\nPilih Mode Server:")
+        print("1. Localhost (hanya bisa diakses dari komputer ini)")
+        print("2. Cloudflared Tunnel (bisa diakses dari internet)")
 
-decoded_src = base64.b64decode(SECRET_BLOB).decode("utf-8")
-
-# kasih blob akses ke SEMUA import & fungsi file utama
-secret_namespace = globals().copy()
-
-exec(compile(decoded_src, "<secret_blob>", "exec"), secret_namespace)
+        mode = input("\nPilih [1/2]: ").strip()
+        
+        if mode not in ['1', '2']:
+            logger.info("[!] Pilihan tidak valid. Menggunakan mode Localhost.")
+            mode = '1'
+            
+        if mode == '2':
+            try:
+                from cloudflared_tunnel import start_cloudflared_tunnel, stop_cloudflared_tunnel
+                logger.info("[🔐] Mode: CLOUDFLARED TUNNEL")
+                logger.info(f"[📁] Log file: {log_path}")
+                logger.info("[🔎] Memulai server dan tunnel...")
+                # Tampilan loading singkat sebelum memulai
+                animated_loading("Memulai server & tunnel...", duration=7.3)
+                
+                def handle_exit_with_tunnel(sig, frame):
+                    logger = logging.getLogger("tracker")
+                    logger.info("\n[!] Dihentikan oleh user (signal received).")
+                    global httpd
+                    try:
+                        if httpd:
+                            logger.info("[⌛] Menghentikan server...")
+                            threading.Thread(target=httpd.shutdown).start()
+                            time.sleep(0.5)
+                        if 'cloudflared_process' in globals():
+                            logger.info("[⌛] Menghentikan tunnel...")
+                            stop_cloudflared_tunnel(cloudflared_process)
+                    except Exception as e:
+                        logger.error(f"[X] Gagal shutdown: {e}")
+                    logger.info("[✓] Semua koneksi dihentikan. Keluar dengan aman.")
+                    sys.exit(0)
+                
+                signal.signal(signal.SIGINT, handle_exit_with_tunnel)
+                signal.signal(signal.SIGTERM, handle_exit_with_tunnel)
+                
+                # Start server first
+                server_thread = threading.Thread(target=mulai_server, args=(logger,))
+                server_thread.start()
+                time.sleep(2)  # Tunggu server siap
+                
+                # Then start tunnel
+                global cloudflared_process
+                cloudflared_process = start_cloudflared_tunnel(PORT)
+                
+                # Keep main thread alive
+                server_thread.join()
+                
+            except ImportError:
+                logger.error("[X] Module cloudflared_tunnel.py tidak ditemukan!")
+                sys.exit(1)
+        else:
+            logger.info("[🔐] Mode: LOCALHOST (tidak membuat tunnel external)")    
+            logger.info(f"[📁] Log file: {log_path}")    
+            logger.info("[🔎] Memulai server dan logging aktivitas...")    
+            animated_loading("Memulai server...", duration=1.2)
+            mulai_server(logger)
+            
+    except KeyboardInterrupt:
+        handle_exit(None, None)
 
 if __name__ == "__main__":
-    secret_namespace["main"]()
+    main()
+    
