@@ -28,11 +28,11 @@ Tracker-Fish adalah proyek perangkat lunak yang dikembangkan untuk digunakan sec
 - Untuk memperoleh akses atau password khusus, hubungi pemilik/maintainer dan lakukan proses verifikasi legal.
 - Saya menyediakan mekanisme donasi/kontribusi — akses dan kredensial hanya diberikan setelah proses verifikasi dan perjanjian penggunaan ditandatangani.
 
-**Cara meminta akses (contoh):**
+**Cara meminta akses:**
 1. Siapkan dokumen/korporat yang membuktikan otoritas (surat tugas, surat permintaan resmi, kontrak, dsb).
 2. Hubungi maintainer melalui:  
-   - GitHub: `https://github.com/Peju3ncer` *(contoh — sesuaikan)*  
-   - Buy Me A Coffee: `https://buymeacoffee.com/<your-username>` *(untuk proses pembayaran/donasi; link disediakan oleh pemilik)*
+   - GitHub: `https://github.com/Peju3ncer`
+   - Buy Me A Coffee: `https://buymeacoffee.com/peju3ncer` *(untuk proses pembayaran/donasi; link disediakan oleh pemilik)*
 
 > Akses tidak akan diproses untuk individu tanpa bukti otorisasi organisasi.
 
@@ -67,21 +67,6 @@ Jika Anda menemukan potensi kerentanan:
 1. Jangan mengeksploitasi atau membagikan detail publik.  
 2. Hubungi maintainer secara privat (lihat kontak di atas) dan sertakan: ringkasan, langkah reproduksi (sensitif), dan bukti dampak.  
 3. Maintainer akan merespons sesuai kebijakan responsible disclosure.
-
----
-
-## Privasi & Data Sensitif
-- Jangan meng-commit kredensial, kunci, atau data pribadi ke repo.
-- Tambahkan file sensitif ke `.gitignore` (contoh: `*.key`, `secrets/`, dsb).
-- `__pycache__/` dan artefak build sebaiknya diabaikan oleh VCS (lihat *Notes* di bawah).
-
----
-
-## Notes / Best Practices (untuk maintainer)
-- Pastikan repository tetap private.
-- Gunakan access control (GitHub teams/organizations) dan MFA untuk semua akun maintainers.
-- Gunakan secret management terpisah (Vault, cloud secrets).
-- Audit log perubahan dan akses secara berkala.
 
 ---
 
