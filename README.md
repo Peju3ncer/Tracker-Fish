@@ -1,5 +1,5 @@
 # Tracker-Fish
-<img src="https://example.com/trackerfish.png" alt="Tracker-Fish" width="400" />
+<img src="https://freeimage.host/i/KmTpTTG" alt="Tracker-Fish" width="400" />
 
 ![Status: Private/Restricted](https://img.shields.io/badge/status-private--restricted-red)
 
