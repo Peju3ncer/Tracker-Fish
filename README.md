@@ -63,12 +63,6 @@ Setelah memilih salah satu, Tracker-Fish akan otomatis berjalan dan mengeluarkan
 
 ---
 
-## Video Penjelasan
-Password & demo alat ada di video berikut:  
-** https://youtu.be/LVgMjRL_kqU?si=Q988dpRw7Ir6Cycg**
-
----
-
 ## ☕ Support Me
 Jika kamu merasa tool ini bermanfaat dan ingin mendukung pengembangannya:
 
