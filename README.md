@@ -2,7 +2,7 @@
 <a href="https://freeimage.host/i/KmTpTTG"><img src="https://iili.io/KmTpTTG.md.jpg" alt="KmTpTTG.md.jpg" border="0"></a>
 
 # Tracker-Fish
-### _Lightweight Device Tracking Concept Tool — For Educational Use Only_
+### _Device Tracking Tool — For Educational Use Only_
 
 ![License](https://img.shields.io/badge/Use-Educational%20Only-red)
 ![Author](https://img.shields.io/badge/Author-Peju3ncer-black)
