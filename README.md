@@ -38,7 +38,6 @@ Setiap penyalahgunaan berada di luar tanggung jawab pembuat maupun penyedia mate
 ```bash
 git clone https://github.com/Peju3ncer/Tracker-Fish.git
 cd Tracker-Fish
-pip install -r requirements.txt
 ```
 
 ---
