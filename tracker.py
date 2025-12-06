@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# tracker.py - Localhost mode + logging & Cloudflared Tunnel
+# tracker.py
 import http.server
 import socketserver
 import os
