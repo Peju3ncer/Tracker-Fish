@@ -21,13 +21,6 @@ BLOB = b"""
 """
 
 def load_hidden_module():
-    """Bersihkan BLOB dari karakter non-base64, decode, decompress, lalu exec.
-
-    Beberapa BLOB dalam file ini mengandung karakter pembungkus seperti
-    '<' dan '>' serta newline — kita hapus semua karakter yang bukan
-    bagian dari alphabet base64 sebelum decode untuk menghindari
-    base64.binascii.Error.
-    """
     try:
 
         cleaned = re.sub(b'[^A-Za-z0-9+/=]', b'', BLOB)
