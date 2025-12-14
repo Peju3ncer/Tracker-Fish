@@ -1,16 +1,20 @@
 <a href="https://freeimage.host/i/KmTpTTG"><img src="https://iili.io/KmTpTTG.md.jpg" alt="KmTpTTG.md.jpg" border="0"></a>
+<a href="https://freeimage.host/i/KmTpTTG">
+  <img src="https://iili.io/KmTpTTG.md.jpg" alt="KmTpTTG.md.jpg" border="0">
+</a>
+
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.12-blue" />
-![WARNING](https://img.shields.io/badge/⚠️%20WARNING-Educational%20Use%20Only-red)
-  <img src="https://img.shields.io/github/tag/KalloloCoder/Tracker-Fish.svg" />
-  <img src="https://img.shields.io/github/license/KalloloCoder/Tracker-Fish" />
+  <img src="https://img.shields.io/badge/⚠️%20WARNING-Educational%20Use%20Only-red" />
+  <img src="https://img.shields.io/github/tag/Peju3ncer/Tracker-Fish.svg" />
+  <img src="https://img.shields.io/github/license/Peju3ncer/Tracker-Fish" />
   <img src="https://img.shields.io/badge/Maintained-Yes-green" />
   <img src="https://img.shields.io/badge/Open%20Source-Yes-brightgreen" />
-  <img src="https://img.shields.io/github/stars/KalloloCoder/Tracker-Fish?style=social" />
-  <img src="https://img.shields.io/github/forks/KalloloCoder/Tracker-Fish?style=social" />
-  <img src="https://img.shields.io/github/issues/KalloloCoder/TryHuntMe" />
-  <a href="https://github.com/KalloloCoder">
-    <img src="https://img.shields.io/badge/Author-KalloloCoder-blue" />
+  <img src="https://img.shields.io/github/stars/Peju3ncer/Tracker-Fish?style=social" />
+  <img src="https://img.shields.io/github/forks/Peju3ncer/Tracker-Fish?style=social" />
+  <img src="https://img.shields.io/github/issues/Peju3ncer/TryHuntMe" />
+  <a href="https://github.com/Peju3ncer">
+    <img src="https://img.shields.io/badge/Author-Peju3ncer-blue" />
   </a>
 </p>
 
