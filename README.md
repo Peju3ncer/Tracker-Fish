@@ -6,21 +6,15 @@
   <!-- Core Info -->
   <img src="https://img.shields.io/badge/Version-2.0-brightgreen" />
   <img src="https://img.shields.io/badge/Python-3.12-blue" />
-  <img src="https://img.shields.io/badge/⚠️%20WARNING-Educational%20Use%20Only-red" />
-
-  <!-- Repo Info -->
   <img src="https://img.shields.io/github/license/Peju3ncer/Tracker-Fish" />
   <img src="https://img.shields.io/badge/Maintained-Yes-green" />
   <img src="https://img.shields.io/badge/Open%20Source-Yes-brightgreen" />
-
-  <!-- Social -->
   <img src="https://img.shields.io/github/stars/Peju3ncer/Tracker-Fish?style=social" />
   <img src="https://img.shields.io/github/forks/Peju3ncer/Tracker-Fish?style=social" />
   <img src="https://img.shields.io/github/issues/Peju3ncer/Tracker-Fish" />
-
-  <!-- Author -->
   <a href="https://github.com/Peju3ncer">
     <img src="https://img.shields.io/badge/Author-Peju3ncer-blue" />
+<img src="https://img.shields.io/badge/⚠️%20WARNING-Educational%20Use%20Only-red" />
   </a>
 </p>
 
