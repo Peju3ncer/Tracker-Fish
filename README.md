@@ -30,7 +30,7 @@ Setiap penyalahgunaan berada di luar tanggung jawab pembuat maupun penyedia mate
 - Mode **Localhost**  
 - Mode **Cloudflare Tunnel**  
 - Password lock (password dijelaskan di video YouTube)  
-- Dirancang untuk edukasi penetration testing
+- Dirancang untuk edukasi keamanan siber
 
 ---
 
