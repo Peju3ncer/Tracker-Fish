@@ -1,4 +1,5 @@
 <a href="https://freeimage.host/i/KmTpTTG"><img src="https://iili.io/KmTpTTG.md.jpg" alt="KmTpTTG.md.jpg" border="0"></a>
+![WARNING](https://img.shields.io/badge/⚠️%20WARNING-Educational%20Use%20Only-red)
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.12-blue" />
   <img src="https://img.shields.io/github/tag/KalloloCoder/TryHuntMe.svg" />
