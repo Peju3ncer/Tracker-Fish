@@ -12,9 +12,7 @@
     <img src="https://img.shields.io/badge/Author-KalloloCoder-blue" />
   </a>
 </p>
-<p align="center">
 ![WARNING](https://img.shields.io/badge/⚠️%20WARNING-Educational%20Use%20Only-red)
-</p>
 
 Tracker-Fish
 
