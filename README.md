@@ -88,10 +88,6 @@ Setelah password benar, pilih mode yang tersedia:
 
 Setelah memilih salah satu, Tracker-Fish akan otomatis berjalan dan mengeluarkan phishing link-nya.
 
-> Catatan: Pada versi 2.0, halaman phishing akan di-generate otomatis melalui html_generator.py.
-
-
-
 
 ---
 
