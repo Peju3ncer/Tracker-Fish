@@ -1,13 +1,3 @@
-<!-- ===================== CONFIG (EDIT HERE) ===================== -->
-<!-- Project -->
-<!-- Ganti nilai di badge URL sesuai kebutuhan -->
-<!-- Version -->
-<!-- Python -->
-<!-- Warning Text -->
-<!-- Author -->
-<!-- Repo Owner / Repo Name -->
-<!-- =============================================================== -->
-
 <a href="https://freeimage.host/i/KmTpTTG">
   <img src="https://iili.io/KmTpTTG.md.jpg" alt="Tracker-Fish Banner" border="0">
 </a>
@@ -19,7 +9,6 @@
   <img src="https://img.shields.io/badge/⚠️%20WARNING-Educational%20Use%20Only-red" />
 
   <!-- Repo Info -->
-  <img src="https://img.shields.io/github/tag/Peju3ncer/Tracker-Fish.svg" />
   <img src="https://img.shields.io/github/license/Peju3ncer/Tracker-Fish" />
   <img src="https://img.shields.io/badge/Maintained-Yes-green" />
   <img src="https://img.shields.io/badge/Open%20Source-Yes-brightgreen" />
