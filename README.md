@@ -79,6 +79,7 @@ Mempermudah modifikasi tampilan landing page tanpa menyentuh file utama
 
 Update ini membuat Tracker-Fish lebih modular, mudah dikembangkan, dan lebih rapi untuk keperluan pembelajaran.
 
+User juga bisa mengutak-atik kode html yang ada didalamnya untuk membuat varian lainnya sesuai keinginan user.
 
 ---
 
