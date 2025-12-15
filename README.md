@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div align="center">
 <a href="https://freeimage.host/i/faaomdP">
   <img src="https://iili.io/faaomdP.md.jpg" alt="Tracker-Fish Banner" border="0">
 </a>
