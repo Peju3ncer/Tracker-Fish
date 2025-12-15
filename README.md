@@ -1,7 +1,8 @@
+<div style="text-align: center;">
 <a href="https://freeimage.host/i/faaomdP">
   <img src="https://iili.io/faaomdP.md.jpg" alt="Tracker-Fish Banner" border="0">
 </a>
-
+</div>
 <p align="center">
   <!-- Core Info -->
   <img src="https://img.shields.io/badge/Version-2.0-brightgreen" />
