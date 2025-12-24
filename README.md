@@ -70,6 +70,7 @@ Pelaku kejahatan digital hidup dari rekayasa sosial.
 Mereka memancing, memanipulasi, dan menekan — dengan asumsi bahwa korbannya tidak paham cara kerja mereka.
 
 *Tracker-Fish* lahir dari prinsip sederhana:
+
 _Untuk memahami dan menangkap serigala, terkadang kita harus masuk ke hutan dengan cara berpikir seperti serigala — bukan untuk memangsa, tetapi untuk menghentikan pemangsanya._
 Tool ini menggunakan bahasa, pola, dan pendekatan yang sama seperti pelaku, namun dengan tujuan yang berlawanan:
 membongkar, mengungkap, dan menghentikan.
