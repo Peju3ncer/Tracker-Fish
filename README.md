@@ -114,6 +114,11 @@ Tidak terdapat breaking change pada versi ini, sehingga pengguna v2.0 sebelumnya
 ---
 
 ## 🚀 Cara Penggunaan
+
+Clone Repo:
+```
+git clone https://github.com/Peju3ncer/Tracker-Fish.git
+```
 Install requirement:
 ```
 pip install -r requirements.txt
