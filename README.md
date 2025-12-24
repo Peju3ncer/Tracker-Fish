@@ -54,6 +54,7 @@ Dalam praktiknya, pelaku kejahatan semacam ini jarang menyerang secara frontal. 
 - anonimitas internet,
 - tekanan psikologis,
 - serta ketidaksiapan korban dalam aspek teknis dan pembuktian awal.
+
 Ketika kasus tersebut dilaporkan kepada pihak berwenang, penanganan yang diterima tidak berjalan secara efektif sebagaimana yang diharapkan. Di titik inilah muncul kesadaran bahwa, dalam banyak kasus kejahatan digital, korban sering kali kehilangan kendali bukan karena lemah, tetapi karena tidak memiliki alat.
 Dari kondisi tersebut, Tracker-Fish dibuat — bukan untuk menggantikan peran aparat penegak hukum, melainkan sebagai alat bantu teknis dalam proses penyelidikan dan pengungkapan pelaku.
 
