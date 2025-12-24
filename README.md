@@ -76,7 +76,7 @@ Tool ini menggunakan bahasa, pola, dan pendekatan yang sama seperti pelaku, namu
 membongkar, mengungkap, dan menghentikan.
 Karena ketika kejahatan dijalankan dengan kecerdikan,
 melawannya dengan kepolosan saja sering kali tidak cukup.
-Tracker-Fish bukan tentang menjadi penjahat —
+_Tracker-Fish_ bukan tentang menjadi penjahat —
 tetapi tentang membuktikan bahwa korban juga bisa berpikir selangkah lebih maju.
 
 #stillethical
