@@ -21,7 +21,7 @@
 
 Tracker-Fish
 
-Device Tracking Tool — For Educational Use Only
+Device Tracking Tool
 
 
 
