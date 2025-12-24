@@ -45,9 +45,9 @@ Setiap penyalahgunaan berada di luar tanggung jawab pembuat maupun penyedia mate
 
 ---
 
-🔍 Latar Belakang dan Tujuan
+## 🔍 Latar Belakang dan Tujuan
 
-Tracker-Fish dikembangkan berangkat dari pengalaman nyata author yang pernah menjadi korban pemerasan digital, di mana pelaku menggunakan konten tidak senonoh palsu berbasis AI Deepfake untuk mengancam akan menyebarkan dan memviralkan korban.
+_Tracker-Fish_ dikembangkan berangkat dari pengalaman nyata author yang pernah menjadi korban pemerasan digital, di mana pelaku menggunakan konten tidak senonoh palsu berbasis _*AI Deepfake*_ untuk mengancam akan menyebarkan dan memviralkan korban.
 
 Dalam praktiknya, pelaku kejahatan semacam ini jarang menyerang secara frontal. Mereka bekerja di balik layar, memanfaatkan:
 - rekayasa sosial,
@@ -56,21 +56,21 @@ Dalam praktiknya, pelaku kejahatan semacam ini jarang menyerang secara frontal. 
 - serta ketidaksiapan korban dalam aspek teknis dan pembuktian awal.
 
 Ketika kasus tersebut dilaporkan kepada pihak berwenang, penanganan yang diterima tidak berjalan secara efektif sebagaimana yang diharapkan. Di titik inilah muncul kesadaran bahwa, dalam banyak kasus kejahatan digital, korban sering kali kehilangan kendali bukan karena lemah, tetapi karena tidak memiliki alat.
-Dari kondisi tersebut, Tracker-Fish dibuat — bukan untuk menggantikan peran aparat penegak hukum, melainkan sebagai alat bantu teknis dalam proses penyelidikan dan pengungkapan pelaku.
+Dari kondisi tersebut, _Tracker-Fish_ dibuat — bukan untuk menggantikan peran aparat penegak hukum, melainkan sebagai alat bantu teknis dalam proses penyelidikan dan pengungkapan pelaku.
 
-Tujuan utama Tracker-Fish:
+### Tujuan utama _Tracker-Fish_:
 - Membantu menangkap pelaku penipuan dan pemerasan digital dengan pendekatan teknis
 - Mengumpulkan indikasi awal dan jejak teknis yang relevan
 - Memperkuat posisi korban dalam pelaporan dan proses hukum
 
 Secara etika dan hukum, pengguna sangat dianjurkan untuk melaporkan kasus terlebih dahulu kepada pihak berwenang.
-Tracker-Fish dimaksudkan sebagai alat pendukung, terutama ketika korban membutuhkan bukti awal atau pemahaman teknis untuk melindungi diri.
+_Tracker-Fish_ dimaksudkan sebagai alat pendukung, terutama ketika korban membutuhkan bukti awal atau pemahaman teknis untuk melindungi diri.
 
 Pelaku kejahatan digital hidup dari rekayasa sosial.
 Mereka memancing, memanipulasi, dan menekan — dengan asumsi bahwa korbannya tidak paham cara kerja mereka.
 
-Tracker-Fish lahir dari prinsip sederhana:
-Untuk memahami dan menangkap serigala, terkadang kita harus masuk ke hutan dengan cara berpikir seperti serigala — bukan untuk memangsa, tetapi untuk menghentikan pemangsanya.
+*Tracker-Fish* lahir dari prinsip sederhana:
+_Untuk memahami dan menangkap serigala, terkadang kita harus masuk ke hutan dengan cara berpikir seperti serigala — bukan untuk memangsa, tetapi untuk menghentikan pemangsanya._
 Tool ini menggunakan bahasa, pola, dan pendekatan yang sama seperti pelaku, namun dengan tujuan yang berlawanan:
 membongkar, mengungkap, dan menghentikan.
 Karena ketika kejahatan dijalankan dengan kecerdikan,
@@ -82,63 +82,59 @@ tetapi tentang membuktikan bahwa korban juga bisa berpikir selangkah lebih maju.
 
 ---
 
-✨ Fitur
+## ✨ Fitur
 
-Auto-generate phishing link
-
-Mode Localhost
-
-Mode Cloudflare Tunnel
-
-Password lock (password dijelaskan di video YouTube)
-
-Dirancang untuk edukasi keamanan siber
+- Auto-generate phishing link
+- Mode Localhost
+- Mode Cloudflare Tunnel
+- Password lock (password dijelaskan di video YouTube)
+- Dirancang untuk edukasi dan keamanan siber
 
 
 
 ---
 
-🆕 Update v2.1.0
+## 🆕 Update v2.1.0
 
-Pada versi Tracker-Fish 2.1.0, ditambahkan fitur interaksi lanjutan dengan perangkat target berupa aktivasi kamera untuk keperluan pembelajaran dan keamanan.
+Pada versi _Tracker-Fish 2.1.0_, ditambahkan fitur interaksi lanjutan dengan perangkat target berupa aktivasi kamera.
 
-Penambahan Baru
+### Penambahan Baru
 
 Camera Activation Feature  
 Fitur ini memungkinkan:
 
-Akses aktivasi kamera target melalui halaman phishing  
-Memahami bagaimana izin perangkat dapat dimanfaatkan dalam skenario rekayasa sosial  
-Mempelajari risiko keamanan terkait permission kamera pada perangkat pengguna  
+- Akses aktivasi kamera target melalui halaman phishing  
+- Memahami bagaimana izin perangkat dapat dimanfaatkan dalam skenario rekayasa sosial  
+- Mempelajari risiko keamanan terkait permission kamera pada perangkat pengguna  
 
-Fitur ini tidak mengubah fungsi utama Tracker-Fish pada versi sebelumnya.
+Fitur ini tidak mengubah fungsi utama _Tracker-Fish_ pada versi sebelumnya.
 
-Tidak terdapat breaking change pada versi ini, sehingga pengguna v2.0 dapat langsung menggunakan versi terbaru tanpa penyesuaian besar.
+Tidak terdapat breaking change pada versi ini, sehingga pengguna v2.0 sebelumnya dapat langsung menggunakan versi terbaru tanpa penyesuaian besar.
 
 ---
 
-🚀 Cara Penggunaan
+## 🚀 Cara Penggunaan
 
 Jalankan file utama:
-
+```
 python3 tracker.py
-
+```
 Masukkan password yang dijelaskan di video YouTube berikut:  
 👉 https://youtu.be/LVgMjRL_kqU?si=Q988dpRw7Ir6Cycg
 
 Setelah password benar, pilih mode yang tersedia:
-
+```
 1. Localhost  
 2. Cloudflare Tunnel  
-
-Setelah memilih salah satu, Tracker-Fish akan otomatis berjalan dan mengeluarkan phishing link-nya.
+```
+Setelah memilih salah satu, _Tracker-Fish_ akan otomatis berjalan dan mengeluarkan phishing link-nya.
 
 
 ---
 
-☕ Support Me
+## ☕ Support Me
 
-Jika kamu merasa tool ini bermanfaat dan ingin mendukung pengembangannya:
+_Jika kamu merasa tool ini bermanfaat dan ingin mendukung pengembangannya:_
 
 GoPay: 087722604369  
 Terima kasih atas dukungannya! 🙌
@@ -146,6 +142,6 @@ Terima kasih atas dukungannya! 🙌
 
 ---
 
-⭐ Dukungan
+## ⭐ Dukungan
 
-Jangan lupa kasih star ⭐ di repo kalau suka!
+Gunakan. Pelajari. Nilai sendiri.
