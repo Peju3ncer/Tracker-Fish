@@ -62,6 +62,7 @@ Tujuan utama Tracker-Fish:
 - Membantu menangkap pelaku penipuan dan pemerasan digital dengan pendekatan teknis
 - Mengumpulkan indikasi awal dan jejak teknis yang relevan
 - Memperkuat posisi korban dalam pelaporan dan proses hukum
+
 Secara etika dan hukum, pengguna sangat dianjurkan untuk melaporkan kasus terlebih dahulu kepada pihak berwenang.
 Tracker-Fish dimaksudkan sebagai alat pendukung, terutama ketika korban membutuhkan bukti awal atau pemahaman teknis untuk melindungi diri.
 
