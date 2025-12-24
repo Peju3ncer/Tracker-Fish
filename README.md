@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/github/issues/Peju3ncer/Tracker-Fish" />
   <a href="https://github.com/Peju3ncer">
     <img src="https://img.shields.io/badge/Author-Peju3ncer-blue" />
-<img src="https://img.shields.io/badge/⚠️%20WARNING-Educational%20Use%20Only-red" />
+<img src="https://img.shields.io/badge/⚠️%20WARNING-Ethical%20Use%20Only-red" />
   </a>
 </p>
 
