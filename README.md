@@ -21,26 +21,26 @@
 
 # Tracker-Fish
 
-Device Tracking Tool
+_Device Tracking Tool_
 
 
 
 ---
 
-Apa itu Tracker-Fish?
+## ❓ Apa itu Tracker-Fish?
 
-Tracker-Fish adalah alat sederhana yang dirancang untuk memperlihatkan konsep dasar pelacakan lokasi perangkat menggunakan teknik phishing link.
-Tool ini dibuat hanya untuk edukasi, demonstrasi keamanan, dan memahami bagaimana teknik rekayasa sosial bekerja.
+_Tracker-Fish_ adalah alat sederhana yang dirancang untuk memperlihatkan konsep dasar pelacakan lokasi perangkat menggunakan teknik phishing link.
+Tool ini dibuat untuk memahami bagaimana teknik rekayasa sosial bekerja dalam dunia keamanan siber.
 
-Alat ini tidak dirancang untuk penyalahgunaan.
+*Alat ini tidak dirancang untuk penyalahgunaan!*
 
 
 ---
 
-⚠️ Disclaimer
+## ⚠️ Disclaimer
 
-Konten, kode, dan penjelasan dalam tool ini dibuat hanya untuk tujuan edukasi.
-Jangan pernah menggunakan Tracker-Fish untuk melacak siapa pun tanpa izin.
+Konten, kode, dan penjelasan dalam tool ini dibuat hanya untuk tujuan edukasi dan pemahaman terkait keamanan.
+Jangan pernah menggunakan _Tracker-Fish_ untuk melacak siapa pun tanpa izin.
 Setiap penyalahgunaan berada di luar tanggung jawab pembuat maupun penyedia materi.
 
 ---
