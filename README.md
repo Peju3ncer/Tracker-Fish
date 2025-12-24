@@ -114,7 +114,10 @@ Tidak terdapat breaking change pada versi ini, sehingga pengguna v2.0 sebelumnya
 ---
 
 ## 🚀 Cara Penggunaan
-
+Install requirement:
+```
+pip install -r requirements.txt
+```
 Jalankan file utama:
 ```
 python3 tracker.py
